@@ -1,6 +1,18 @@
+from string import ascii_lowercase
 words = open('words.txt').read().splitlines()
+dict = {}
+for word in words:
+    dict[word] = True
 usedWords = []
 def GetSimilarWords(word):
+    similar = []
+    for letter in ascii_lowercase:
+        for char in word:
+            newWord = word.replace(char, letter)
+            if newWord in dict:
+                similar.append(newWord)
+    return similar
+def _GetSimilarWords(word):
     similar = []
     for currWord in words:       
         if len(word) != len(currWord):
